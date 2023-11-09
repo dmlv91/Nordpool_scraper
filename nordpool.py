@@ -62,12 +62,13 @@ class NORD:
     
     def get_cheap_hours(self,nordpool_data):
         cheap = []
-        date = datetime.now().strftime('%d-%m-%Y')
-        for time in nordpool_data[date]:
-            if type(nordpool_data[date][time]) == float:
-                if nordpool_data[date][time] <= 0.05:
-                    cheap.append(True)
-                    print(date + " @ " + time + " -----> BURN ELECTRICITY!!!! PRICE FOR ONE KW---> " + str(nordpool_data[date][time]))
+        # date = datetime.now().strftime('%d-%m-%Y')
+        for date in nordpool_data:
+            for time in nordpool_data[date]:
+                if type(nordpool_data[date][time]) == float:
+                    if nordpool_data[date][time] <= 0.05:
+                        cheap.append(True)
+                        print(date + " @ " + time + " -----> BURN ELECTRICITY!!!! PRICE FOR ONE KW---> " + str(nordpool_data[date][time]))
         if len(cheap) == 0:
             print("NO CHEAP HOURS TODAY!")
         print(nordpool_data)
